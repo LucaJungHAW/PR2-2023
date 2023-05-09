@@ -1,0 +1,29 @@
+/**
+ * @author Thore Jördens
+ * @author Luca Jung
+ * @date   20.04.2023
+ */
+
+#include <iostream>
+#include "TimeHelper.h"
+#include "FestoTransferSystem.h"
+#include "FSM.h"
+
+#define WAIT 1000
+#define DURCHLAUF_ANZAHL 5
+
+
+
+
+    int main() {
+        FestoTransferSystem Maschine;
+        Band_Status Band1(Maschine);
+        FSM_festo FTS_Labor_2 (Maschine,Band1);
+
+        while(true){
+        Maschine.updateSensors();
+        FTS_Labor_2.evalTransition();
+        FTS_Labor_2.evalState();
+        Maschine.updateActuators();
+    }
+}

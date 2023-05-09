@@ -1,0 +1,218 @@
+//
+// Created by jungl on 07.05.2023.
+//
+
+
+
+#include "FSM.h"
+#include <iostream>
+
+FSM_festo::FSM_festo(FestoTransferSystem &FTS_Labor_2, Band_Status &Band1) : FTS_Labor_2(FTS_Labor_2), Band1(Band1) {
+    this->current_state = possible_Festo_states::Anfangszustand;  // Start Bedingung
+}
+
+void FSM_festo::evalTransition() {
+    possible_Festo_states next_states = current_state;
+
+    switch (this->current_state) { // next states oder current state
+        case possible_Festo_states::Anfangszustand:
+            if (FTS_Labor_2.pushbuttonStart.isPressEvent()) {
+                next_states = possible_Festo_states::Betriebsbereit;
+            }
+            break;
+        case possible_Festo_states::Betriebsbereit:
+            if (FTS_Labor_2.pushbuttonStart.isPressEvent()) {
+                next_states = possible_Festo_states::Anfangszustand;
+            } else if (FTS_Labor_2.lightbarrierBegin.isOpen()) {
+                next_states = possible_Festo_states::Fahrt_1;
+            }
+            break;
+        case possible_Festo_states::Fahrt_1:
+            if (FTS_Labor_2.lightbarrierHeightSensor.isOpen()) {
+                next_states = possible_Festo_states::Hoehe_Messen;
+            }
+            break;
+        case possible_Festo_states::Hoehe_Messen:
+            if (FTS_Labor_2.heightcheck.isHeightCorrect()) {
+                next_states = possible_Festo_states::Hoehe_OK;
+            } else if (!FTS_Labor_2.heightcheck.isHeightCorrect()) {
+                next_states = possible_Festo_states::Hoehe_Nicht_OK;
+            }
+            break;
+        case possible_Festo_states::Hoehe_OK:
+            if (FTS_Labor_2.lightbarrierBegin.isOpen()) {
+                next_states = possible_Festo_states::Werkstueck_Drehung;
+            }
+            break;
+        case possible_Festo_states::Hoehe_Nicht_OK:
+            if (FTS_Labor_2.lightbarrierFeedSeparator.isOpen()) {
+                next_states = possible_Festo_states::Metall_Check;
+            }
+        case possible_Festo_states::Werkstueck_Drehung:
+            if (FTS_Labor_2.pushbuttonReset.isPressEvent()) {
+                next_states = possible_Festo_states::Fahrt_2;
+            }
+            break;
+        case possible_Festo_states::Fahrt_2:
+            if (FTS_Labor_2.lightbarrierFeedSeparator.isOpen()) {
+                next_states = possible_Festo_states::Metall_Check;
+            }
+            break;
+        case possible_Festo_states::Metall_Check:
+            if (FTS_Labor_2.metalcheck.isMetalDetected()) {
+                next_states = possible_Festo_states::Metall;
+            } else if (!FTS_Labor_2.metalcheck.isMetalDetected()) {
+                next_states = possible_Festo_states::Nicht_Metall;
+            }
+            break;
+        case possible_Festo_states::Metall:
+            if (FTS_Labor_2.lightbarrierEnd.isOpen()) {
+                next_states = possible_Festo_states::Werkstueck_im_Auslauf;
+            }
+            break;
+        case possible_Festo_states::Nicht_Metall:
+            if (FTS_Labor_2.lightbarrierBufferFull.isOpen()) {
+                next_states = possible_Festo_states::Werkstueckt_in_Rutsche;
+            }
+            break;
+        case possible_Festo_states::Werkstueckt_in_Rutsche:
+            if (FTS_Labor_2.lightbarrierBufferFull.isClosed()) {
+                next_states = possible_Festo_states::Kein_Werkstueck_in_Rutsche;
+            }
+            break;
+        case possible_Festo_states::Werkstueck_im_Auslauf:
+            if (FTS_Labor_2.lightbarrierEnd.isClosed()) {
+                next_states = possible_Festo_states::Kein_Werkstueck_im_Auslauf;
+            }
+            break;
+        case possible_Festo_states::Kein_Werkstueck_in_Rutsche:
+            if (FTS_Labor_2.pushbuttonStart.isPressEvent()) {
+                next_states = possible_Festo_states::Anfangszustand;
+            }
+        case possible_Festo_states::Kein_Werkstueck_im_Auslauf:
+            if (FTS_Labor_2.pushbuttonStart.isPressEvent()) {
+                next_states = possible_Festo_states::Anfangszustand;
+            }
+            break;
+        default:
+            break;
+    }
+}
+void FSM_festo::evalState() {
+//do's
+    switch (current_state){
+        case possible_Festo_states::Anfangszustand:
+            // Werte aus schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); // Band steht;
+            FTS_Labor_2.feedSeparator.close();
+            FTS_Labor_2.lampRed.switchOff();
+            FTS_Labor_2.lampYellow.switchOff();
+            FTS_Labor_2.lampGreen.switchOff();
+            FTS_Labor_2.ledQ1.switchOff();
+            FTS_Labor_2.ledQ2.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.ledStart.switchOn();
+            break;
+        case possible_Festo_states::Betriebsbereit:
+            // Wert ein schalten
+            FTS_Labor_2.lampGreen.switchOn();
+            break;
+        case possible_Festo_states::Fahrt_1:
+            // Werte aus schalten
+            FTS_Labor_2.lampGreen.switchOff();
+            FTS_Labor_2.ledStart.switchOff();
+
+            FTS_Labor_2.lampYellow.switchOn();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST); // Band schnell rechts;
+            break;
+        case possible_Festo_states::Hoehe_Messen:
+            // Werte aus schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); // Band steht;
+            FTS_Labor_2.lampYellow.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampRed.switchOn();
+            break;
+        case possible_Festo_states::Hoehe_OK:
+            // Werte aus schalten
+            FTS_Labor_2.lampRed.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampYellow.switchOn();
+            FTS_Labor_2.ledQ1.switchOn();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_LEFT_FAST);// Band links schnell;
+            break;
+        case possible_Festo_states::Werkstueck_Drehung:
+            // Werte aus schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); // Band steht;
+            FTS_Labor_2.lampYellow.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampRed.blink();
+            FTS_Labor_2.ledReset.switchOn();
+            break;
+        case possible_Festo_states::Fahrt_2:
+            // Werte aus schalten
+            FTS_Labor_2.ledReset.switchOff();
+            FTS_Labor_2.lampRed.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampYellow.switchOn();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST); // Band schnell rechts;
+            break;
+        case possible_Festo_states::Hoehe_Nicht_OK:
+            // Werte aus schalten
+            FTS_Labor_2.lampRed.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampYellow.switchOn();
+            FTS_Labor_2.lampGreen.switchOn();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST); // Band rechts schnell
+            break;
+        case possible_Festo_states::Metall_Check:
+            // Werte aus schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); //Band steht
+            FTS_Labor_2.lampYellow.switchOff();
+            FTS_Labor_2.lampGreen.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampRed.switchOn();
+            break;
+        case possible_Festo_states::Metall:
+            // Werte aus schalten
+            FTS_Labor_2.lampRed.switchOff();
+            // Werte ein schalten
+            FTS_Labor_2.lampYellow.switchOn();
+            FTS_Labor_2.ledQ2.switchOn();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST); // Band schnell rechts;
+            FTS_Labor_2.feedSeparator.open();
+            break;
+        case possible_Festo_states::Werkstueck_im_Auslauf:
+            // Werte aus schalten
+            FTS_Labor_2.ledQ2.switchOff();
+            FTS_Labor_2.lampYellow.switchOff();
+            FTS_Labor_2.feedSeparator.close();
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); // Band steht;
+            // Werte ein schalten
+            FTS_Labor_2.lampGreen.switchOff();
+            FTS_Labor_2.lampRed.blink();
+            break;
+        case possible_Festo_states::Kein_Werkstueck_im_Auslauf:
+            // Werte aus schalten
+            FTS_Labor_2.lampRed.switchOff();
+            FTS_Labor_2.lampYellow.switchOff();
+            FTS_Labor_2.lampGreen.switchOff();
+
+            break;
+        case possible_Festo_states::Nicht_Metall:
+            // Werte ein schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST); // Band schnell rechts;
+            FTS_Labor_2.lampYellow.switchOn();
+            break;
+        case possible_Festo_states::Werkstueckt_in_Rutsche:
+            // Werte aus schalten
+            FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP); // Band steht
+            // Werte ein schalten
+            FTS_Labor_2.lampYellow.blink();
+            FTS_Labor_2.lampRed.switchOn();
+            break;
+        case possible_Festo_states::Kein_Werkstueck_in_Rutsche:
+            // Werte aus schalten
+            FTS_Labor_2.lampYellow.switchOff();
+            FTS_Labor_2.lampRed.switchOff();
+    }
+}

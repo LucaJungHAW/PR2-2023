@@ -1,0 +1,23 @@
+//
+// Created by jungl on 07.05.2023.
+//
+#include "FestoTransferSystem.h"
+#ifndef PRAKTIKUMPR2_BANDAKTION_H
+#define PRAKTIKUMPR2_BANDAKTION_H
+
+
+class Band_Status{
+private:
+    FestoTransferSystem& FTS_Labor_2;
+
+public:
+    Band_Status(FestoTransferSystem &FTS_Labor_2);
+    void Band_Steht();
+    void Band_Langsam_Rechts();
+    void Band_Langsam_Links();
+    void Band_Schnell_Rechts();
+    void Band_Schnell_Links();
+
+};
+
+#endif //PRAKTIKUMPR2_BANDAKTION_H

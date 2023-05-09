@@ -1,0 +1,24 @@
+//
+// Created by jungl on 07.05.2023.
+//
+# include "BandAktion.h"
+
+Band_Status::Band_Status(FestoTransferSystem &FTS_Labor_2) : FTS_Labor_2(FTS_Labor_2){
+
+}
+
+void Band_Status::Band_Steht() {
+    FTS_Labor_2.drive.setSpeed(CONVEYERBELT_STOP);
+}
+void Band_Status::Band_Langsam_Links() {
+    FTS_Labor_2.drive.setSpeed(CONVEYERBELT_LEFT_SLOW);
+}
+void Band_Status::Band_Langsam_Rechts() {
+    FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_SLOW);
+}
+void Band_Status::Band_Schnell_Links() {
+    FTS_Labor_2.drive.setSpeed(CONVEYERBELT_LEFT_FAST);
+}
+void Band_Status::Band_Schnell_Rechts() {
+    FTS_Labor_2.drive.setSpeed(CONVEYERBELT_RIGHT_FAST);
+}

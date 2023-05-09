@@ -1,0 +1,50 @@
+//
+// Created by jungl on 07.05.2023.
+//
+
+#ifndef PRAKTIKUMPR2_FSM_H
+#define PRAKTIKUMPR2_FSM_H
+#include "FestoTransferSystem.h"
+#include "BandAktion.h"
+
+
+
+enum class possible_Festo_states {
+    Anfangszustand, Betriebsbereit, Fahrt_1,
+    Hoehe_Messen,
+    Hoehe_OK, Werkstueck_Drehung, Fahrt_2,
+    Hoehe_Nicht_OK,
+    Metall_Check,
+    Metall,Werkstueck_im_Auslauf, Kein_Werkstueck_im_Auslauf,
+    Nicht_Metall,Werkstueckt_in_Rutsche, Kein_Werkstueck_in_Rutsche,
+};
+
+const std::string FSM_state_names[15] = {
+        "Anfangszustand", "Betriebsbereit", "Fahrt_1",
+        "Hoehe_Messen",
+        "Hoehe_OK", "Werkstueck_Drehung", "Fahrt_2",
+        "Hoehe_Nicht_OK",
+        "Metall_Check",
+        "Metall", "Werkstueck_im_Auslauf", "Kein_Werkstueck_im_Auslauf",
+        "Nicht_Metall", "Werkstueckt_in_Rutsche", "Kein_Werkstueck_in_Rutsche"
+};
+
+
+class FSM_festo {
+private:
+    possible_Festo_states current_state;
+    FestoTransferSystem& FTS_Labor_2;
+    Band_Status& Band1;
+
+
+public:
+
+    FSM_festo(FestoTransferSystem &FTS_Labor_2, Band_Status &Band1);
+    ~FSM_festo();
+
+    void evalState();           // Ausführend für do's
+    void evalTransition(); // Transitionen
+};
+
+
+#endif //PRAKTIKUMPR2_FSM_H
