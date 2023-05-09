@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>13</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>325</x>
+      <y>78</y>
+      <w>234</w>
+      <h>299</h>
+    </coordinates>
+    <panel_attributes>Anfangszustand
+--
+do:
+CONVEYERBELT_STOP();
+feedSeparator.close();
+lampRed.switchOff();
+lampYellow.switchOff();
+lampGreen.switchOff();
+lampStart.switchOff();
+ledQ1.switchOff();
+ledQ2.switchOff();
+ledStart.switchOn();
+-.
+excit:
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>390</x>
+      <y>364</y>
+      <w>299</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.is PressEvent();
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>325</x>
+      <y>442</y>
+      <w>234</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>Betriebsbereit
+--
+do:
+lampGreen.switchOn();
+
+-.
+exit:
+lampGreen.switchOff();
+ledStart.switchOff();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>286</y>
+      <w>468</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.is PressEvent();</panel_attributes>
+    <additional_attributes>10.0;220.0;140.0;220.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>325</x>
+      <y>676</y>
+      <w>299</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>Fahrt_1
+--
+do:
+lampYellow.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+
+-.
+exit:
+lampYellow.switchOff();
+CONVEYERBELT_STOP();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>416</x>
+      <y>611</y>
+      <w>247</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBegin.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>338</x>
+      <y>923</y>
+      <w>234</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Höhe_Messen
+--
+do:
+lampRed.switchOn();
+
+-.
+exit:
+lampRed.switchOff();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>442</x>
+      <y>858</y>
+      <w>312</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierHeightSensor.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>52</x>
+      <y>1066</y>
+      <w>351</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+system1.heightcheck.isHeightCorrect();</panel_attributes>
+    <additional_attributes>250.0;10.0;250.0;40.0;40.0;40.0;40.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>0</x>
+      <y>1209</y>
+      <w>286</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>Höhe_OK
+--
+do:
+lampYellow.switchOn();
+ledQ1.switchOn();
+CONVEYERBELT_LEFT_FAST();
+
+-.
+exit:
+CONVEYERBELT_STOP();
+lampYellow.switchOff();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>78</x>
+      <y>1417</y>
+      <w>247</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBegin.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>26</x>
+      <y>1508</y>
+      <w>234</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>Werkstück_Drehung
+--
+do:
+lampRed.blink();
+ledReset.switchOn();
+
+-.
+exit:
+ledReset.switchOff();
+lampRed.switchOff();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>52</x>
+      <y>1690</y>
+      <w>299</w>
+      <h>117</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+puschbuttonReset.isPresEvent();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>26</x>
+      <y>1781</y>
+      <w>299</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>Fahrt_2
+--
+do:
+lampYellow.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+
+-.
+exit:
+lampYellow.switchOff();
+CONVEYERBELT_STOP();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>585</x>
+      <y>1196</y>
+      <w>299</w>
+      <h>247</h>
+    </coordinates>
+    <panel_attributes>Höhe_nicht_OK
+--
+do:
+lampYellow.switchOn();
+lampGreen.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+
+-.
+exit:
+lampYellow.switchOff();
+lampGreen.switchOff();
+CONVEYERBELT_STOP();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>416</x>
+      <y>1066</y>
+      <w>364</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+!system1.heightcheck.isHeightCorrect();
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>598</x>
+      <y>1534</y>
+      <w>234</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>Metal_Check
+--
+do:
+lampRed.switchOn();
+
+-.
+exit:
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>1482</y>
+      <w>689</w>
+      <h>585</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierFeedSeparator.isOpen();</panel_attributes>
+    <additional_attributes>10.0;380.0;10.0;430.0;290.0;430.0;290.0;10.0;400.0;10.0;400.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>741</x>
+      <y>1430</y>
+      <w>325</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ligthbarrierFeedSeparator.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1105</x>
+      <y>1417</y>
+      <w>299</w>
+      <h>299</h>
+    </coordinates>
+    <panel_attributes>Metall
+--
+do:
+lampRed.switchOff();
+lampYellow.switchOn();
+ledQ2.switchOn();
+MotorRechtsSchnell();
+feedSeparator.open();
+
+-.
+exit:
+ledQ2.switchOff();
+lampYellow.switchOff();
+MotorAus();
+feedSeparator.close();
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1443</x>
+      <y>1417</y>
+      <w>299</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes>Nicht_Metall
+--
+do:
+CONVEYERBELT_RIGHT_FAST();
+lampYellow.switchOn();
+
+
+
+
+-.
+exit:
+CONVEYERBELT_STOP();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>1677</y>
+      <w>897</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+! metalcheck.isMetalDetected();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0;670.0;140.0;670.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>741</x>
+      <y>1677</y>
+      <w>546</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+metalcheck.isMetalDetected();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0;400.0;80.0;400.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1131</x>
+      <y>923</y>
+      <w>234</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>Werkstück_im_Auslauf
+--
+do:
+lampGreen.switchOn();
+lampRed.blink();
+
+-.
+exit:
+lampRed.switchOff();
+lampYellow.switchOff();
+lampGreen.switchOff();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1248</x>
+      <y>1131</y>
+      <w>234</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierEnd.isOpen();</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1118</x>
+      <y>676</y>
+      <w>273</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Kein_Werkstück_im_Auslauf
+--
+do:
+
+-.
+exit:
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1235</x>
+      <y>793</y>
+      <w>247</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierEnd.isClosed();</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1495</x>
+      <y>676</y>
+      <w>273</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Kein_Werkstück_in_Rutsche
+--
+do:
+
+-.
+exit:
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1638</x>
+      <y>793</y>
+      <w>299</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBufferFull.isClosed();</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1521</x>
+      <y>923</y>
+      <w>234</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>Werkstück_in_Rutsche
+--
+do:
+lampYellow.blink();
+lampRed.switchOn();
+
+-.
+exit:
+lampRed.switchOff();
+lampYellow.switchOff();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1586</x>
+      <y>1131</y>
+      <w>286</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBufferFull.isOpen();</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>195</y>
+      <w>728</w>
+      <h>507</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.isPressEvent();</panel_attributes>
+    <additional_attributes>540.0;370.0;540.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>104</y>
+      <w>1118</w>
+      <h>598</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.isPressEvent();</panel_attributes>
+    <additional_attributes>840.0;440.0;840.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>390</x>
+      <y>0</y>
+      <w>39</w>
+      <h>39</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>403</x>
+      <y>26</y>
+      <w>39</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+</diagram>

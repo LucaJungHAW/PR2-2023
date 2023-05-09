@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>203</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Betriebsbereit
+--
+do:
+Ampel Grün an
+Band steht
+
+-.
+exit:
+Grüne Lampe aus
+Led Start-Taste aus
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>63</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Anfangszustand
+--
+do:
+Band steht
+Weiche geschlossen
+Ampel aus
+Q1 und Q2 aus
+LED Start-Taste ein
+-.
+exit:
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>133</x>
+      <y>161</y>
+      <w>105</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Starttaste gedrückt</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>84</x>
+      <y>350</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Fahrt 1
+--
+do:
+Ampel Gelb
+Band langsam rechts
+
+-.
+exit:
+Ampel Gelb aus
+Band steht
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>203</x>
+      <y>133</y>
+      <w>210</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Starttaste gedrückt</panel_attributes>
+    <additional_attributes>10.0;10.0;160.0;10.0;160.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>301</y>
+      <w>175</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichtschranke Anfang unterbrochen</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>140</x>
+      <y>448</y>
+      <w>147</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichtschranke Höhenmessen</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>91</x>
+      <y>490</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Höhe Messen
+--
+do:
+Ampel Rot an
+
+-.
+exit:
+Ampel Rot aus
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>42</x>
+      <y>567</y>
+      <w>98</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Höhensensor OK</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;50.0;120.0;50.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>630</y>
+      <w>119</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Höhe OK
+--
+do:
+Ampel Gelb an
+Q1 an
+Band schnell links
+Höhenmessunng Konsole Ausgabe
+
+-.
+exit:
+Band aus
+Ampel Gelb aus
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>49</x>
+      <y>749</y>
+      <w>175</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichtschranke Anfang unterbrochen</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>784</y>
+      <w>119</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Werkstück Drehung
+--
+do:
+Ampel Rot an blinkt 
+LED Reset-Taste an
+
+-.
+exit:
+LED Reset-Taste aus
+Ampel Rot aus
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>49</x>
+      <y>882</y>
+      <w>105</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Reset-Taste betätigt</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>924</y>
+      <w>119</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Fahrt 2
+--
+do:
+Ampel Gelb an
+Band schnell rechts
+
+-.
+exit:
+Ampel Gelb aus
+Band steht
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>42</x>
+      <y>1022</y>
+      <w>196</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichtschranke Weiche unterbrochen</panel_attributes>
+    <additional_attributes>260.0;130.0;260.0;70.0;10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>154</x>
+      <y>567</y>
+      <w>182</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Höhensensor nicht OK</panel_attributes>
+    <additional_attributes>240.0;80.0;240.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>259</x>
+      <y>623</y>
+      <w>119</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Höhe nicht OK
+--
+do:
+Ampel Grün an
+Ampel Gelb an
+Band schnell rechts
+
+-.
+exit:
+Band steht
+Ampel Grün aus
+Ampel Gelb aus
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>245</x>
+      <y>742</y>
+      <w>238</w>
+      <h>385</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichtschranke Weiche unterbrochen</panel_attributes>
+    <additional_attributes>10.0;530.0;10.0;370.0;100.0;370.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>175</x>
+      <y>1113</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Werkstück Weiche erreicht
+--
+do:
+Ampel Rot an
+
+-.
+exit:
+Ampel Rot aus
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>14</x>
+      <y>1260</y>
+      <w>119</w>
+      <h>126</h>
+    </coordinates>
+    <panel_attributes>Nicht Metall
+--
+do:
+Band schnell rechts
+Ampel Gelb an
+Ampel Rot an
+
+-.
+exit:
+Band steht
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>49</x>
+      <y>1190</y>
+      <w>168</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+nicht Metall</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;70.0;220.0;70.0;220.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>252</x>
+      <y>1260</y>
+      <w>119</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>Metall
+--
+do:
+Band schnell rechts
+Ampel Gelb an
+Weiche geöffnet
+Q2 Lampe an
+
+-.
+exit:
+Band steht
+Ampel Gelb aus
+Weiche geschlossen
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>238</x>
+      <y>1190</y>
+      <w>84</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Metall</panel_attributes>
+    <additional_attributes>100.0;100.0;100.0;50.0;10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>805</y>
+      <w>119</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Werkstück in Rutsche
+--
+do:
+Ampel Rot an
+Lampe Gelb an blinkt
+
+-.
+exit:
+Ampel Rot aus
+Lampe Gelb aus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>805</y>
+      <w>119</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Auslauf
+--
+do:
+Ampel Grün an
+Ampel Rot an
+-.
+exit:
+Ampel Grün aus
+Ampel Rot aus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>301</x>
+      <y>931</y>
+      <w>448</w>
+      <h>518</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Auslauf angekommen</panel_attributes>
+    <additional_attributes>490.0;10.0;490.0;720.0;10.0;720.0;10.0;670.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>756</x>
+      <y>672</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Werkstück Rutsche Frei
+--
+do:
+Ampel Rot an
+
+-.
+exit:
+Ampel Rot aus</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>749</y>
+      <w>77</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Rutsche Frei</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>49</x>
+      <y>931</y>
+      <w>791</w>
+      <h>546</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Lichschranke Rutsche unterbrochen</panel_attributes>
+    <additional_attributes>1110.0;10.0;1100.0;750.0;10.0;760.0;10.0;650.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>203</x>
+      <y>70</y>
+      <w>644</w>
+      <h>616</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Start-Taster</panel_attributes>
+    <additional_attributes>10.0;20.0;880.0;20.0;880.0;860.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>644</x>
+      <y>749</y>
+      <w>77</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Rutsche Frei</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>588</x>
+      <y>672</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Werkstück Auslauf leer
+--
+do:
+
+-.
+exit:
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>203</x>
+      <y>112</y>
+      <w>511</w>
+      <h>567</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+Start-Taster</panel_attributes>
+    <additional_attributes>10.0;10.0;640.0;10.0;640.0;790.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>119</x>
+      <y>28</y>
+      <w>21</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>105</x>
+      <y>0</y>
+      <w>35</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
