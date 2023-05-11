@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>7</zoom_level>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>315</x>
+      <y>112</y>
+      <w>126</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>Anfangszustand
+--
+do:
+CONVEYERBELT_STOP();
+feedSeparator.close();
+lampRed.switchOff();
+lampYellow.switchOff();
+lampGreen.switchOff();
+lampStart.switchOff();
+ledQ1.switchOff();
+ledQ2.switchOff();
+ledStart.switchOn();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>350</x>
+      <y>266</y>
+      <w>161</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.is PressEvent();
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>315</x>
+      <y>308</y>
+      <w>126</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Betriebsbereit
+--
+do:
+lampGreen.switchOn();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>224</y>
+      <w>252</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.is PressEvent();</panel_attributes>
+    <additional_attributes>10.0;220.0;140.0;220.0;140.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>315</x>
+      <y>434</y>
+      <w>161</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Fahrt_1
+--
+do:
+exit:
+lampGreen.switchOff();
+ledStart.switchOff();
+
+lampYellow.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+
+-.
+exit:
+lampYellow.switchOff();
+CONVEYERBELT_STOP();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>364</x>
+      <y>399</y>
+      <w>133</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBegin.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>322</x>
+      <y>567</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Höhe_Messen
+--
+do:
+lampYellow.switchOff();
+CONVEYERBELT_STOP();
+
+lampRed.switchOn();
+
+-.
+exit:
+lampRed.switchOff();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>532</y>
+      <w>168</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierHeightSensor.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>644</y>
+      <w>189</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+system1.heightcheck.isHeightCorrect();</panel_attributes>
+    <additional_attributes>250.0;10.0;250.0;40.0;40.0;40.0;40.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>140</x>
+      <y>721</y>
+      <w>161</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Höhe_OK
+--
+entry:
+std::cout &lt;&lt; "Hoehe OK!" &lt;&lt; std::endl;
+-.
+
+do:
+lampYellow.switchOn();
+ledQ1.switchOn();
+CONVEYERBELT_LEFT_FAST();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>182</x>
+      <y>833</y>
+      <w>133</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBegin.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>154</x>
+      <y>882</y>
+      <w>126</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Werkstück_Drehung
+--
+do:
+CONVEYERBELT_STOP();
+lampYellow.switchOff();
+lampRed.blink();
+ledReset.switchOn();
+
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>168</x>
+      <y>980</y>
+      <w>161</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+puschbuttonReset.isPresEvent();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>154</x>
+      <y>1029</y>
+      <w>161</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>Fahrt_2
+--
+do:
+lampYellow.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+ledReset.switchOff();
+lampRed.switchOff();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>455</x>
+      <y>714</y>
+      <w>189</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>Höhe_nicht_OK
+--
+entry:
+std::cout &lt;&lt; "Hoehe nicht OK!" &lt;&lt; std::endl;
+-.
+do:
+lampRed.switchOff();
+
+lampYellow.switchOn();
+lampGreen.switchOn();
+CONVEYERBELT_RIGHT_FAST();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>364</x>
+      <y>644</y>
+      <w>196</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+!system1.heightcheck.isHeightCorrect();
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;240.0;40.0;240.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>462</x>
+      <y>924</y>
+      <w>126</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Metal_Check
+--
+do:
+lampYellow.switchOff();
+lampGreen.switchOff();
+CONVEYERBELT_STOP();
+lampRed.switchOn();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>224</x>
+      <y>868</y>
+      <w>371</w>
+      <h>315</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierFeedSeparator.isOpen();</panel_attributes>
+    <additional_attributes>10.0;380.0;10.0;430.0;290.0;430.0;290.0;10.0;400.0;10.0;400.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>861</y>
+      <w>175</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+ligthbarrierFeedSeparator.isOpen();</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>735</x>
+      <y>833</y>
+      <w>161</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Metall
+--
+do:
+lampRed.switchOff();
+lampYellow.switchOn();
+ledQ2.switchOn();
+MotorRechtsSchnell();
+feedSeparator.open();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>917</x>
+      <y>833</y>
+      <w>161</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>Nicht_Metall
+--
+do:
+CONVEYERBELT_RIGHT_FAST();
+lampYellow.switchOn();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>483</x>
+      <y>924</y>
+      <w>483</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+! metalcheck.isMetalDetected();</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;210.0;670.0;210.0;670.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>539</x>
+      <y>924</y>
+      <w>294</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+metalcheck.isMetalDetected();</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;150.0;400.0;150.0;400.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>749</x>
+      <y>567</y>
+      <w>126</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Werkstück_im_Auslauf
+--
+do:
+ledQ2.switchOff();
+lampYellow.switchOff();
+MotorAus();
+feedSeparator.close();
+
+lampGreen.switchOn();
+lampRed.blink();
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>679</y>
+      <w>126</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierEnd.isOpen();</panel_attributes>
+    <additional_attributes>10.0;220.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>742</x>
+      <y>434</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Kein_Werkstück_im_Auslauf
+--
+do:
+lampRed.switchOff();
+lampYellow.switchOff();
+lampGreen.switchOff();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>805</x>
+      <y>497</y>
+      <w>133</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierEnd.isClosed();</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>945</x>
+      <y>434</y>
+      <w>147</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Kein_Werkstück_in_Rutsche
+--
+do:
+lampRed.switchOff();
+lampYellow.switchOff();
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1022</x>
+      <y>497</y>
+      <w>161</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBufferFull.isClosed();</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>959</x>
+      <y>567</y>
+      <w>126</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>Werkstück_in_Rutsche
+--
+do:
+CONVEYERBELT_STOP();
+
+lampYellow.blink();
+lampRed.switchOn();
+
+
+
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>994</x>
+      <y>693</y>
+      <w>154</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+lightbarrierBufferFull.isOpen();</panel_attributes>
+    <additional_attributes>10.0;200.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>175</y>
+      <w>392</w>
+      <h>273</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.isPressEvent();</panel_attributes>
+    <additional_attributes>540.0;370.0;540.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>126</y>
+      <w>602</w>
+      <h>322</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;
+pushbuttonStart.isPressEvent();</panel_attributes>
+    <additional_attributes>840.0;440.0;840.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLSpecialState</id>
+    <coordinates>
+      <x>350</x>
+      <y>70</y>
+      <w>21</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>type=initial</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>357</x>
+      <y>84</y>
+      <w>21</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>21</x>
+      <y>105</y>
+      <w>182</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>BandAktion
+--
+- FTS_Labor_2: FestoTransferSystem&amp;
+
+--
++ band_Steht(): void
++ band_Langsam_Rechts(): void
++ band_Langsam_Links(): void
++ band_Schnell_Rechts(): void
++ band_Schnell_Links(): void
+valign=top
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
